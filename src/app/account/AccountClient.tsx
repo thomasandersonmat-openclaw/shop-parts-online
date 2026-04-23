@@ -5,8 +5,10 @@ import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { Mail, Lock, User, ShieldCheck, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export function AccountClient() {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -38,7 +40,7 @@ export function AccountClient() {
         if (error) throw error;
         setSuccess('Successfully logged in!');
         // In a real app, redirect to dashboard or home
-        setTimeout(() => window.location.href = '/', 1000);
+        setTimeout(() => router.push('/'), 1000);
       } else {
         const { error } = await supabase.auth.signUp({
           email,
