@@ -5,14 +5,17 @@ import { Search, ShoppingCart, Menu, User } from 'lucide-react';
 import { useCartStore } from '@/store/cart';
 import { useState } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 export function Navbar() {
+  const router = useRouter();
   const totalItems = useCartStore((state) => state.totalItems());
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/search?q=${encodeURIComponent(searchQuery)}`;
+      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
     }
   };
 
