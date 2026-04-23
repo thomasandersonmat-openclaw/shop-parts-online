@@ -169,6 +169,13 @@ function ProductContent() {
   );
 }
 
+export async function generateStaticParams() {
+  const { data: products } = await supabase.from('products').select('id');
+  return (products || []).map((p) => ({
+    id: p.id,
+  }));
+}
+
 export default function ProductPage() {
   return (
     <Suspense fallback={

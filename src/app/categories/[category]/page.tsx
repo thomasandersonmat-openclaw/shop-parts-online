@@ -79,6 +79,21 @@ function CategoryContent() {
   );
 }
 
+export async function generateStaticParams() {
+  return [
+    { category: 'construction' },
+    { category: 'agriculture' },
+    { category: 'material-handling' },
+    { category: 'forestry' },
+    { category: 'mining' },
+    { category: 'engine-parts' },
+    { category: 'hydraulics' },
+    { category: 'undercarriage' },
+    { category: 'electrical' },
+    { category: 'filters' }
+  ];
+}
+
 export default function CategoryPage() {
   return (
     <Suspense fallback={
